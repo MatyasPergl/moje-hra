@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -7,6 +8,7 @@ int HP;
 int MAXHP;
 int XP = 1;
 int MP;
+int claska;
 
 void pomoc(){
 	cout << "pomoc = vypise vsechny prikazy" << "\n";
@@ -75,7 +77,7 @@ int main(){
             cout << "Stal se z tebe Fighter!\n";
             atk = 3;
             armor = 3;
-			MAXHP = 20
+			MAXHP = 20;
             HP = 20;
             MP = 0;
             break;
