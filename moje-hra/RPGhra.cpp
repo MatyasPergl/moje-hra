@@ -9,11 +9,13 @@ int MAXHP;
 int XP = 1;
 int MP;
 int claska;
+int pocetheal;
+bool stit = false;
 
 void pomoc(){
 	cout << "pomoc = vypise vsechny prikazy" << "\n";
 	cout << "vypis = vypise tvoje statistiky" << "\n";
-	cout << "boj = vypise tvoje utoky" << "\n";
+	cout << "utoky = vypise tvoje utoky" << "\n";
 	cout << "pruzkum = posunes se dal v pribehu" << "\n";
 	cout << "batoh = vypise predmety co mas u sebe" << "\n";
 }
@@ -26,25 +28,48 @@ void vypis(){
     cout << "Level = " << XP << "\n";
 }
 
-void boj(){
+void utoky(){
 	switch (claska){
 		case 1:
             cout << "Si Mage a tvoje utoky jsou:\n";
-			cout << "Fireball = velke poskozeni na vsechny nepratele \n";
-            cout << "Stit = vyblokuje plne jeden utok nepritele \n";
+			cout << "Fireball = velke poskozeni na vsechny nepratele (10 mana cost)\n";
+            cout << "Stit = vyblokuje plne jeden utok nepritele (4 mana cost)\n";
 			break;
 		case 2:
             cout << "Si Rogue a tvoje utoky jsou:\n";
-			cout << "Backstab = velke poskozeni na jednoho nepritele \n";
+			cout << "Backstab = velke poskozeni na jednoho nepritele (0 mana cost)\n";
 			break;
 		case 3:
 		    cout << "Si Fighter a nemas specialni utoky :c\n";
 			break;
 		case 4:
             cout << "Si Cleric a tvoje utoky jsou:\n";
-			cout << "Heal = vylecis si trochu zivotu \n";
+			cout << "Heal = vylecis si trochu zivotu (4 mana cost)\n";
 			break;
 	}
+}
+
+void fireball(){
+
+}
+
+void stit(){
+    cout << "Zapnul si stit\n";
+    stit = true;
+}
+
+void backstab(){
+
+}
+
+void heal (){
+    if (MP < 4){ "nemas dostatek many troubo";
+    return; }
+    else { mp -= 5;
+    }
+    pocetheal = MAXHP - HP
+    cout << "vylecil si se o " << pocetheal << " zivotu";
+    HP = HP + pocetheal
 }
 
 // fakt nevim jak udelam inventarovej system :sob: ale verim si sem sigma
@@ -63,7 +88,7 @@ int main(){
             armor = 1;
 			MAXHP = 10;
             HP = 10;
-            MP = 20;
+            MP = 50;
             break;
         case 2:
             cout << "Stal se z tebe Rogue!\n";
