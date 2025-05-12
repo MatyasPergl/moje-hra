@@ -9,15 +9,14 @@ int MAXHP;
 int XP = 1;
 int MP;
 int claska;
-int pocetheal;
-bool stit = false;
+bool stit1 = false;
 
 void pomoc(){
-	cout << "pomoc = vypise vsechny prikazy" << "\n";
-	cout << "vypis = vypise tvoje statistiky" << "\n";
-	cout << "utoky = vypise tvoje utoky" << "\n";
-	cout << "pruzkum = posunes se dal v pribehu" << "\n";
-	cout << "batoh = vypise predmety co mas u sebe" << "\n";
+	cout << "pomoc = vypise vsechny prikazy\n";
+	cout << "vypis = vypise tvoje statistiky\n";
+	cout << "utoky = vypise tvoje utoky\n";
+	cout << "pruzkum = posunes se dal v pribehu\n";
+	cout << "batoh = vypise predmety co mas u sebe\n";
 }
 
 void vypis(){
@@ -26,6 +25,7 @@ void vypis(){
     cout << "Mana = " << MP << "\n";
     cout << "Armor = " << armor << "\n";
     cout << "Level = " << XP << "\n";
+    cout << "Stit = " << stit1 << "\n";
 }
 
 void utoky(){
@@ -50,12 +50,25 @@ void utoky(){
 }
 
 void fireball(){
-
+    if(MP < 10){
+    cout << "nemas dostatek many troubo";
+    return;
+    }
+    else{
+    MP -= 10;
+    }
 }
 
 void stit(){
+    if(MP < 4){
+    cout << "nemas dostatek many troubo";
+    return;
+    }
+    else{
+    MP -= 4;
     cout << "Zapnul si stit\n";
-    stit = true;
+    stit1 = true;
+    }
 }
 
 void backstab(){
@@ -63,13 +76,19 @@ void backstab(){
 }
 
 void heal (){
-    if (MP < 4){ "nemas dostatek many troubo";
-    return; }
-    else { mp -= 5;
+    int pocetheal;
+    if (MP < 4){
+    cout << "nemas dostatek many troubo";
+    return;
     }
-    pocetheal = MAXHP - HP
+    else{
+    MP -= 4;
+    }
+    pocetheal = HP + XP;
+    if(pocetheal > MAXHP){
+    pocetheal = MAXHP;
+    }
     cout << "vylecil si se o " << pocetheal << " zivotu";
-    HP = HP + pocetheal
 }
 
 // fakt nevim jak udelam inventarovej system :sob: ale verim si sem sigma
