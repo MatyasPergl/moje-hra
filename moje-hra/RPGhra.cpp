@@ -19,12 +19,12 @@ int stit_potak = 2;
 int pozice = 0;
 bool stit1 = false;
 void rozcestnik();
+int zamereni;
 
 void pomoc(){
 	cout << "pomoc = vypise vsechny prikazy\n";
 	cout << "vypis = vypise tvoje statistiky\n";
 	cout << "utoky = vypise tvoje utoky\n";
-	cout << "pruzkum = posunes se dal v pribehu\n";
 	cout << "batoh = vypise predmety co mas u sebe\n";
 }
 
@@ -58,6 +58,7 @@ void utoky(){
     cout << "Heal_potion = pouzij aby sis vylecil trochu zivot(" << heal_potak << " mas u sebe)\n";
     cout << "Stit_potion = pouzij aby sis nahodil stit(" << stit_potak << " mas u sebe)\n";
     cout << "Mana_potion = pouzij aby sis doplnil trochu many(" << mana_potak << "  mas u sebe)\n";
+    cout << "A take samozrejme muzes pouzit standartni utok\nUtok = uhodis nepritele za " << atk << " damage (meni se na zaklade tve sily)";
 	}
 }
 
@@ -111,6 +112,10 @@ void mana_potion(){
     }
 }
 
+void utok(){
+
+}
+
 void fireball(){
 
 }
@@ -135,7 +140,7 @@ void backstab(){
 
 }
 
-void heal (){
+void heal(){
     if (MP < 4){
     cout << "nemas dostatek many troubo";
     return;
@@ -146,6 +151,15 @@ void heal (){
     cout << "vylecil si se o " << pocetheal/2 << " zivotu";
     HP = HP + pocetheal/2;
     }
+}
+
+void lvlup(){
+XP++;
+atk = atk + 1;
+armor = armor + 1;
+MAXHP = MAXHP + 2;
+HP = HP + 2;
+MAXMP = MAXMP * 2;
 }
 
 void vesnice(){
@@ -204,15 +218,34 @@ switch (volba) {
 void monstrum(){
 int HPenemaka1 = 2 + XP * 4;
 int atkenemaka1 = XP * 2;
+int armorenemaka1 = XP;
 bool zivy1 = true;
-do{
 cout << "Stoji pred tebou nepritel\n";
-cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage";
+cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage\n";
+do{
+if (HP <= 0){
+    cout << "chicpls bracho je to jover";
+    return 0;
+} else {
+cout << "Vyber si jak chces na nej zautocit";
+utoky();
 
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozeni enemaka <= 0) {
+    poskozeni enemaka = 0;
+}
+if (stit1 = true){
+    cout << "nepritel se po tobe ohnal ale vsechen damage vzal tvuj stit";
+    stit1 = false;
+} else {
+HP = HP - poskozeni enemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozeni enemaka << " damage AU!\n";
+}
+}
 }while(zivy1=true);
-XP++;
 gold = gold + 15 + XP * 10;
-cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata";
+cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
+lvlup();
 cout << "Jsi nyní level "<< XP << " GJ bro\n";
 pozice++;
 rozcestnik();
