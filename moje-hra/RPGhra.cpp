@@ -20,6 +20,11 @@ int pozice = 0;
 bool stit1 = false;
 void rozcestnik();
 int zamereni;
+int endlessobtiznost = 5;
+
+int konec() {
+return 0;
+}
 
 void pomoc(){
 	cout << "pomoc = vypise vsechny prikazy\n";
@@ -219,27 +224,28 @@ void monstrum(){
 int HPenemaka1 = 2 + XP * 4;
 int atkenemaka1 = XP * 2;
 int armorenemaka1 = XP;
+int poskozenienemaka;
 bool zivy1 = true;
 cout << "Stoji pred tebou nepritel\n";
 cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage\n";
 do{
 if (HP <= 0){
     cout << "chicpls bracho je to jover";
-    return 0;
+    konec();
 } else {
 cout << "Vyber si jak chces na nej zautocit";
 utoky();
 
 poskozenienemaka = atkenemaka1 - armor;
-if (poskozeni enemaka <= 0) {
-    poskozeni enemaka = 0;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
 }
 if (stit1 = true){
     cout << "nepritel se po tobe ohnal ale vsechen damage vzal tvuj stit";
     stit1 = false;
 } else {
-HP = HP - poskozeni enemaka;
-cout << "Vrhne se na tebe a uderi te za " << poskozeni enemaka << " damage AU!\n";
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage AU!\n";
 }
 }
 }while(zivy1=true);
@@ -273,15 +279,23 @@ bool zivy3 = true;
 }
 
 void miniboss(){
-
+int HPenemaka1 = 2 + XP * 4;
+int atkenemaka1 = XP * 2;
+bool zivy1 = true;
 }
 
 void druhejminiboss(){
-
+int HPenemaka1 = 2 + XP * 4;
+int atkenemaka1 = XP * 2;
+bool zivy1 = true;
 }
 
 void Glacithorn(){
 
+}
+
+void endless(){
+endlessobtiznost++;
 }
 
 void rozcestnik(){
@@ -309,13 +323,16 @@ void rozcestnik(){
         break;
     case 4:
         miniboss();
-            break;
+        break;
     case 9:
         druhejminiboss();
-            break;
+        break;
     case 15:
         Glacithorn();
-            break;
+        break;
+    case 16:
+        endless();
+        break;
         default:
         cout << "Vyhral si hru (asi) blahopreju si GOAT";
     }
