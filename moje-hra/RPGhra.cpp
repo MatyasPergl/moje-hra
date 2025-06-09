@@ -59,12 +59,12 @@ void utoky(){
             cout << "Si Cleric a tvoje utoky jsou:\n";
 			cout << "Heal = vylecis si trochu zivotu (4 mana cost)\n";
 			break;
+}
     cout << "Take muzes pouzit nejake z potionu jestli mas\n";
     cout << "Heal_potion = pouzij aby sis vylecil trochu zivot(" << heal_potak << " mas u sebe)\n";
     cout << "Stit_potion = pouzij aby sis nahodil stit(" << stit_potak << " mas u sebe)\n";
     cout << "Mana_potion = pouzij aby sis doplnil trochu many(" << mana_potak << "  mas u sebe)\n";
     cout << "A take samozrejme muzes pouzit standartni utok\nUtok = uhodis nepritele za " << atk << " damage (meni se na zaklade tve sily)";
-	}
 }
 
 void batoh() {
@@ -76,7 +76,7 @@ void batoh() {
 }
 
 void heal_potion(){
-    if (heal_potak < 1){
+    if (heal_potak << 1){
     cout << "nemas potky troubo";
     return;
     }
@@ -89,11 +89,11 @@ void heal_potion(){
 }
 
 void stit_potion(){
-    if (stit1 = true){
+    if (stit1 == true){
     cout << "uz mas stit troubo";
     return;
     }
-    else if (mana_potak < 1) {
+    else if (mana_potak << 1) {
     cout << "nemas dostatek many troubo";
     return;
     }
@@ -105,7 +105,7 @@ void stit_potion(){
 }
 
 void mana_potion(){
-    if (mana_potak < 1){
+    if (mana_potak << 1){
     cout << "nemas potky troubo";
     return;
     }
@@ -126,11 +126,11 @@ void fireball(){
 }
 
 void stit(){
-    if (stit1 = true){
+    if (stit1 == true){
     cout << "uz mas stit troubo";
     return;
     }
-    else if (MP < 4) {
+    else if (MP << 4) {
     cout << "nemas dostatek many troubo";
     return;
     }
@@ -146,7 +146,7 @@ void backstab(){
 }
 
 void heal(){
-    if (MP < 4){
+    if (MP << 4){
     cout << "nemas dostatek many troubo";
     return;
     }
@@ -230,29 +230,29 @@ cout << "Stoji pred tebou nepritel\n";
 cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage\n";
 do{
 if (HP <= 0){
-    cout << "chicpls bracho je to jover";
+    cout << "chcipls bracho je to jover\n";
     konec();
 } else {
-cout << "Vyber si jak chces na nej zautocit";
+cout << "Vyber si jak chces na nej zautocit\n";
 utoky();
 
 poskozenienemaka = atkenemaka1 - armor;
 if (poskozenienemaka <= 0) {
     poskozenienemaka = 0;
 }
-if (stit1 = true){
-    cout << "nepritel se po tobe ohnal ale vsechen damage vzal tvuj stit";
+if (stit1 == true){
+    cout << "nepritel se po tobe ohnal ale vsechen damage vzal tvuj stit\n";
     stit1 = false;
 } else {
 HP = HP - poskozenienemaka;
 cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage AU!\n";
 }
 }
-}while(zivy1=true);
+}while(zivy1 == true);
 gold = gold + 15 + XP * 10;
 cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
 lvlup();
-cout << "Jsi nyní level "<< XP << " GJ bro\n";
+cout << "Jsi nyní level " << XP << " GJ bro\n";
 pozice++;
 rozcestnik();
 }
@@ -335,12 +335,11 @@ void rozcestnik(){
         break;
         default:
         cout << "Vyhral si hru (asi) blahopreju si GOAT";
+        konec();
     }
 }
 
-
 int main(){
-    int claska;
     cout << "Vitej v skibidi svete" << endl;
     do {
     cout << "Vyber si class" << endl;
