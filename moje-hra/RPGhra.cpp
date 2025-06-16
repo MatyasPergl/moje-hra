@@ -33,6 +33,9 @@ int armorenemaka2;
 int HPenemaka3;
 int atkenemaka3;
 int armorenemaka3;
+bool ledovystit;
+int GlacithornHP;
+int kolobojovani;
 
 int konec() {
 return 0;
@@ -169,7 +172,7 @@ void heal(){
     return;
     }
     else {
-        MP -= 4;
+        MP = MP - 4;
     pocetheal = MAXHP - HP;
     cout << "vylecil si se o " << pocetheal/2 << " zivotu\n";
     HP = HP + pocetheal/2;
@@ -180,7 +183,7 @@ void lvlup(){
 XP++;
 atk = atk + 1;
 armor = armor + 1;
-MAXHP = MAXHP + 2;
+MAXHP = MAXHP + 3;
 HP = HP + 2;
 MAXMP = MAXMP * 2;
 }
@@ -402,7 +405,7 @@ rozcestnik();
 }
 
 void dvamonstrum(){
-HPenemaka1 = 2 + XP * 4;
+HPenemaka1 = 2 + XP * 3;
 atkenemaka1 = XP * 2;
 armorenemaka1 = XP - 1;
 HPenemaka2 = 2 + XP * 2;
@@ -438,19 +441,20 @@ cout << "mas nyni " << HP << " zivotu\n";
 gold = gold + 15 + XP * 10;
 cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
 lvlup();
+lvlup();
 cout << "Jsi nyni level " << XP << " GJ bro\n";
 pozice++;
 rozcestnik();
 }
 
 void trimonstrum(){
-HPenemaka1 = 2 + XP * 3;
+HPenemaka1 = 2 + XP * 2;
 atkenemaka1 = XP * 2;
 armorenemaka1 = XP - 1;
 HPenemaka2 = 2 + XP * 2;
 atkenemaka2 = XP;
 armorenemaka2 = XP - 3;
-HPenemaka3 = 2 + XP * 2;
+HPenemaka3 = 2 + XP * 1;
 atkenemaka3 = XP;
 armorenemaka3 = XP - 5;
 cout << "Stoji pred tebou 3 nepratele vsichni jsou to docela paratka ale proste je to ciganska ferovka no\n";
@@ -460,7 +464,7 @@ if (HP <= 0){
     cout << "chcipls bracho je to jover\n";
     konec();
 } else {
-cout << "vyber na koho chces utocit\n1 = silnejsi\n2 = slabsi\n";
+cout << "vyber na koho chces utocit\n1 = prvni\n2 = druhej\n3 = treti\n";
 cin >> vyberenemakaint;
 utoky();
 boj();
@@ -484,6 +488,8 @@ cout << "mas nyni " << HP << " zivotu\n";
 gold = gold + 15 + XP * 10;
 cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
 lvlup();
+lvlup();
+lvlup();
 cout << "Jsi nyni level " << XP << " GJ bro\n";
 pozice++;
 rozcestnik();
@@ -491,7 +497,7 @@ rozcestnik();
 
 void miniboss(){
 HPenemaka1 = 2 + XP * 12;
-atkenemaka1 = XP * 3;
+atkenemaka1 = XP * 2;
 armorenemaka1 = XP - 1;
 cout << "Stoji pred tebou super nepritel\n";
 cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage\n";
@@ -517,9 +523,10 @@ cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage AU!\n"
 cout << "mas nyni " << HP << " zivotu\n";
 }
 }
-}while(HPenemaka1 >= 0);
+}while(HPenemaka1 > 0);
 gold = gold + 15 + XP * 10;
 cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
+lvlup();
 lvlup();
 cout << "Jsi nyni level " << XP << " GJ bro\n";
 pozice++;
@@ -558,13 +565,163 @@ cout << "mas nyni " << HP << " zivotu\n";
 gold = gold + 15 + XP * 10;
 cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
 lvlup();
+lvlup();
+lvlup();
 cout << "Jsi nyni level " << XP << " GJ bro\n";
 pozice++;
 rozcestnik();
 }
 
 void Glacithorn(){
-
+HPenemaka1 = 100;
+atkenemaka1 = 10;
+armorenemaka1 = 10;
+cout << "Stoji pred tebou pekne velkej troll a ma na cele napsano ze je glacithorn takze je to glacitorn proste jo\n";
+cout << "Divas se na jeho zbroj a vidis ze ma tak " << HPenemaka1 << " HP a tak " << atkenemaka1 << " damage\n";
+do{
+        switch(kolobojovani){
+        case 1:
+        case 2:
+        case 4:
+        case 5:
+if (HPenemaka1 % 4 == 0){
+if (HP <= 0){
+    cout << "tak blizko ale vlastne tak daleko achjo zkus to znovu pls\n";
+    konec();
+} else {
+cout << "glacithorn te zmrazil a nemuzes se chvili hnout";
+cout << "glacithorn ma nyni " << HPenemaka1 << " zivotu\n";
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
+}
+if (stit1 == true){
+    cout << "glacithornse po tobe ohnal ale vsechen damage vzal tvuj stit\n";
+    stit1 = false;
+} else {
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage JAU!\n";
+cout << "mas nyni " << HP << " zivotu\n";
+kolobojovani++;
+HPenemaka1 = HPenemaka1 - 1;
+}
+}
+} else {
+if (HP <= 0){
+    cout << "tak blizko ale vlastne tak daleko achjo zkus to znovu pls\n";
+    konec();
+} else {
+vyberenemakaint = 1;
+utoky();
+boj();
+cout << "glacithorn ma nyni " << HPenemaka1 << " zivotu\n";
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
+}
+if (stit1 == true){
+    cout << "glacithornse po tobe ohnal ale vsechen damage vzal tvuj stit\n";
+    stit1 = false;
+} else {
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage AU!\n";
+cout << "mas nyni " << HP << " zivotu\n";
+kolobojovani++;
+}
+}
+}
+            break;
+        case 3:
+if (HPenemaka1 % 4 == 0){
+if (HP <= 0){
+    cout << "tak blizko ale vlastne tak daleko achjo zkus to znovu pls\n";
+    konec();
+} else {
+cout << "glacithorn te zmrazil a nemuzes se chvili hnout";
+cout << "glacithorn ma nyni " << HPenemaka1 << " zivotu\n";
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
+}
+if (stit1 == true){
+    cout << "glacithornse po tobe ohnal ale vsechen damage vzal tvuj stit\n";
+    stit1 = false;
+} else {
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage JAU!\n";
+cout << "mas nyni " << HP << " zivotu\n";
+kolobojovani++;
+HPenemaka1 = HPenemaka1 - 1;
+}
+}
+} else {
+if (HP <= 0){
+    cout << "tak blizko ale vlastne tak daleko achjo zkus to znovu pls\n";
+    konec();
+} else {
+cout << "glacithorn si udelal stit a nemuzes mu dat damage";
+GlacithornHP = HPenemaka1;
+vyberenemakaint = 1;
+utoky();
+boj();
+if (HPenemaka1 == GlacithornHP){
+GlacithornHP = GlacithornHP + 5;
+}
+HPenemaka1 = GlacithornHP;
+cout << "glacithornuv stit sebral vsechen damage ale ted uz se roztal";
+cout << "glacithorn ma nyni " << HPenemaka1 << " zivotu\n";
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
+}
+if (stit1 == true){
+    cout << "glacithornse po tobe ohnal ale vsechen damage vzal tvuj stit\n";
+    stit1 = false;
+} else {
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage AU!\n";
+cout << "mas nyni " << HP << " zivotu\n";
+kolobojovani++;
+}
+}
+}
+            break;
+        case 6:
+if (HP <= 0){
+    cout << "tak blizko ale vlastne tak daleko achjo zkus to znovu pls\n";
+    konec();
+} else {
+cout << "glacithorn te zmrazil a nemuzes se chvili hnout";
+cout << "glacithorn ma nyni " << HPenemaka1 << " zivotu\n";
+poskozenienemaka = atkenemaka1 - armor;
+if (poskozenienemaka <= 0) {
+    poskozenienemaka = 0;
+}
+if (stit1 == true){
+    cout << "glacithornse po tobe ohnal ale vsechen damage vzal tvuj stit\n";
+    stit1 = false;
+} else {
+HP = HP - poskozenienemaka;
+cout << "Vrhne se na tebe a uderi te za " << poskozenienemaka << " damage JAU!\n";
+cout << "mas nyni " << HP << " zivotu\n";
+kolobojovani++;
+HPenemaka1 = HPenemaka1 - 1;
+}
+}
+kolobojovani = 1;
+            break;
+            }
+            }while(HPenemaka1 > 0);
+gold = gold + 15 + XP * 10;
+cout << "Vylootil si vsechen loot a nasel si zlato a vybaveni o cenne " << 15 + XP * 10 << " mas tedy celkove " << gold << " zlata\n";
+lvlup();
+lvlup();
+lvlup();
+lvlup();
+lvlup();
+cout << "Jsi nyni level " << XP << " GJ bro\n";
+pozice++;
+rozcestnik();
 }
 
 void endless(){
@@ -646,9 +803,9 @@ void rozcestnik(){
 }
 
 int main(){
-    cout << "Vitej v skibidi svete\n;
+    cout << "Vitej v skibidi svete\n";
     do {
-    cout << "Vyber si class\n;
+    cout << "Vyber si class\n";
     cout << "1 = Mage \nPestra paleta utoku omezena manou \n2 = Rogue \nVelky damage za cenu maleho poctu zivotu \n3 = Fighter \nStatisticky silna ale nespecialni class \n4 = Cleric \nVysoky armor a leceni jinak dost slaba postava\n";
     cin >> claska;
     switch (claska){
